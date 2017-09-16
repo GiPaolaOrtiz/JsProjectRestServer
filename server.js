@@ -137,7 +137,7 @@ app.delete('/eliminarPregPorId', (req, res, next) => {
 });
 
 
-app.post('/listarCuentoPorId', (req, res) => {
+app.get('/listarCuentoPorId/:id', (req, res) => {
     var client = new pg.Client(conString);
     client.connect(function(err) {
         if(err) {
@@ -145,7 +145,7 @@ app.post('/listarCuentoPorId', (req, res) => {
             return res.status(500).json({success: false, data: err});
         }
        
-        client.query('SELECT * FROM cuento WHERE idcuento='+ req.body.idcuento +';', function(err, result) {
+        client.query('SELECT * FROM cuento WHERE idcuento='+ req.params.id +';', function(err, result) {
             if(err) {
                 return console.error('error running query', err);
             }
@@ -183,7 +183,7 @@ app.get('/listarUsuarios', (req, res, next) => {
 });
 
 
-app.post('/listarPreguntas', (req, res, next) => {
+app.get('/listarPreguntas/:id', (req, res, next) => {
     var client = new pg.Client(conString);
     client.connect(function(err) {
         if(err) {
@@ -191,7 +191,7 @@ app.post('/listarPreguntas', (req, res, next) => {
             return res.status(500).json({success: false, data: err});
         }
 
-        client.query('SELECT * FROM pregunta WHERE idcuento='+req.body.idcuento+';', function(err, result) {
+        client.query('SELECT * FROM pregunta WHERE idcuento='+req.params.id+';', function(err, result) {
             if(err) {
                 return console.error('error running query', err);
             }
@@ -393,9 +393,9 @@ app.delete('/eliminarCuento',(req,res)=>{
 
 
 //Usuario para actualizar y eliminar
-app.post('/mostrarUsuario',(req,res)=>{
+app.get('/mostrarUsuario/:id',(req,res)=>{
      var client = new pg.Client(conString);
-     var idusuario=req.body.idusuario;
+     var idusuario=req.params.id;
     
      client.connect(function(err) {
         if(err) {
