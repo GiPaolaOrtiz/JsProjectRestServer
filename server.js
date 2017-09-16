@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.use(express.static('public'));
 app.use(permitirCrossDomain);
-app.post('/listarCuentoPorUsuario', (req, res) => {
+app.get('/listarCuentoPorUsuario/:id', (req, res) => {
    
     var client = new pg.Client(conString);
     client.connect(function(err) {
@@ -39,7 +39,7 @@ app.post('/listarCuentoPorUsuario', (req, res) => {
             return res.status(500).json({success: false, data: err});
         }
        
-        client.query('SELECT * FROM cuento WHERE idusuario='+ req.body.idusuario +';', function(err, result) {
+        client.query('SELECT * FROM cuento WHERE idusuario='+ req.params.id +';', function(err, result) {
             if(err) {
                 return console.error('error running query', err);
             }
