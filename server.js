@@ -207,11 +207,11 @@ app.get('/listarPreguntas/:id', (req, res, next) => {
    
 });
 
-app.post('/listarImg', (req, res) => {
+app.post('/listarImg/:id', (req, res) => {
     var client = new pg.Client(conString);
     //console.log("miau "+util.inspect(req,false,null));
     //console.log("chibi: "+req.body.idcuento);
-    var idcuento=req.body.idcuento;
+    var idcuento=req.params.id;
     client.connect(function(err) {
         if(err) {
             return console.error('could not connect to postgres', err);
