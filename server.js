@@ -11,6 +11,7 @@ var conString = "postgres://bpmzsanfrohefo:54c1b0b1d14def6f50a60e3b56b05f3edae76
 
 var express = require('express');
 var http = require('http'),
+    formidable = require('formidable'),
     util = require('util'),
     fs   = require('fs-extra');
 var app = express();
