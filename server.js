@@ -207,7 +207,7 @@ app.get('/listarPreguntas/:id', (req, res, next) => {
    
 });
 
-app.post('/listarImg/:id', (req, res) => {
+app.get('/listarImg/:id', (req, res) => {
     var client = new pg.Client(conString);
     //console.log("miau "+util.inspect(req,false,null));
     //console.log("chibi: "+req.body.idcuento);
