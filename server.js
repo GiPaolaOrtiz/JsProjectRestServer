@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.use(express.static('public'));
 app.use(permitirCrossDomain);
-app.get('/listarCuentoPorUsuario', (req, res) => {
+app.post('/listarCuentoPorUsuario', (req, res) => {
    
     var client = new pg.Client(conString);
     client.connect(function(err) {
@@ -137,7 +137,7 @@ app.delete('/eliminarPregPorId', (req, res, next) => {
 });
 
 
-app.get('/listarCuentoPorId', (req, res) => {
+app.post('/listarCuentoPorId', (req, res) => {
     var client = new pg.Client(conString);
     client.connect(function(err) {
         if(err) {
@@ -183,7 +183,7 @@ app.get('/listarUsuarios', (req, res, next) => {
 });
 
 
-app.get('/listarPreguntas', (req, res, next) => {
+app.post('/listarPreguntas', (req, res, next) => {
     var client = new pg.Client(conString);
     client.connect(function(err) {
         if(err) {
@@ -207,7 +207,7 @@ app.get('/listarPreguntas', (req, res, next) => {
    
 });
 
-app.get('/listarImg', (req, res) => {
+app.post('/listarImg', (req, res) => {
     var client = new pg.Client(conString);
     //console.log("miau "+util.inspect(req,false,null));
     //console.log("chibi: "+req.body.idcuento);
@@ -393,7 +393,7 @@ app.delete('/eliminarCuento',(req,res)=>{
 
 
 //Usuario para actualizar y eliminar
-app.get('/mostrarUsuario',(req,res)=>{
+app.post('/mostrarUsuario',(req,res)=>{
      var client = new pg.Client(conString);
      var idusuario=req.body.idusuario;
     
